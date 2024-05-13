@@ -35,6 +35,9 @@
         const svg = d3.select('#map').append('svg')
             .attr('width', 975)
             .attr('height', 610);
+        
+        const tooltip = d3.select('body').append('div')
+            .attr('class', 'tooltip');
 
         // Drawing the states
         svg.selectAll('.state')
@@ -45,7 +48,19 @@
             .attr('fill', d => {
                 const stateData = data.find(state => state.state === d.properties.NAME);
                 return stateData ? colorScale(stateData.Gun_Law_Rating) : '#ddd';  // Fallback color
-            });
+            }).on('mouseover', function(event, d) {
+                d3.select(this).attr('stroke', 'red').attr('stroke-width', 2);
+                const stateData = data.find(state => state.state === d.properties.NAME);
+                tooltip
+                    .style('opacity', 1)
+                    .html(`<strong>${d.properties.NAME}</strong><br>Rating: ${stateData ? stateData.Gun_Law_Rating : 'N/A'}`)
+                    .style('left', (event.pageX + 10) + 'px')
+                    .style('top', (event.pageY - 28) + 'px');
+            })
+            .on('mouseout', function() {
+            d3.select(this).attr('stroke', 'black').attr('stroke-width', 1);
+            tooltip.style('opacity', 0);
+        });
 
         // Adding labels to each state
         svg.selectAll('.label')
@@ -69,14 +84,34 @@
   <div id="map"></div>
   
   <style>
-    .state {
-      stroke: #a9c90c84;
-      stroke-linejoin: round;
+    .STATE {
+        stroke: #000; /* Default black border */
+        stroke-linejoin: round;
+        stroke-width: 1;
+        fill-opacity: 1; /* Ensure full opacity */
+        transition: stroke 0.2s; /* Smooth transition */
+    }
+
+    .STATE:hover {
+        stroke: red; /* Color when hovered */
+        stroke-width: 2; /* Thicker border on hover */
+    }
+
+    .tooltip {
+        position: absolute;
+        text-align: center;
+        padding: 8px;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        pointer-events: none; /* Ensures it doesn't capture mouse events */
+        opacity: 0;
+        transition: opacity 0.2s; /* Smooth transition */
     }
     .label {
       font-size: 10px;
       font-family: "Arial", sans-serif;
-      fill: #a9c90c84;  /* White text may not be visible on lighter colors; adjust as needed */
+      fill: #a9c90c84;  
     }
   </style>
   
