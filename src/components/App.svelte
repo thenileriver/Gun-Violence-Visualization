@@ -1,13 +1,12 @@
 <script>
-  // Write your JS here, or import other files
+  import Map from './Map.svelte';
 </script>
 
 <main>
-  <h1>Svelte template</h1>
-
-  <p>Write your HTML here</p>
+  <h1>US Gun Law Visualization</h1>
+  <Map/>
 </main>
 
 <style>
-  /* Write your CSS here */
+
 </style>
