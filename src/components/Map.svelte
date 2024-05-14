@@ -9,9 +9,9 @@
 
   onMount(async () => {
     try {
-      data = await d3.csv('/cleaned-gun-violence-data.csv');
-      deathData = await d3.csv('/deaths_state_and_type.csv');
-      usMap = await d3.json('/gz_2010_us_040_00_500k.json');
+      data = await d3.csv('cleaned-gun-violence-data.csv');
+      deathData = await d3.csv('deaths_state_and_type.csv');
+      usMap = await d3.json('gz_2010_us_040_00_500k.json');
 
       deathData.forEach(d => {
         // Convert string to numbers
