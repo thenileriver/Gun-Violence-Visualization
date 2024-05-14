@@ -106,6 +106,16 @@
     color: #333;
   }
 
+  .sidebar textarea {
+    width: 100%; 
+    min-height: 150px; 
+    font-size: 1.5vw; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    background-color: #f8f8f8; 
+    color: #333;
+}
+
   @media (max-width: 768px) {
     h1 {
       font-size: 4vw;
