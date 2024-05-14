@@ -32,11 +32,14 @@
   body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(to right, #2c3e50, #bdc3c7);
+    /* Adding a more complex gradient for visual depth */
+    background: linear-gradient(to right, #0c78e3, #bdc3c7), 
+                url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAHElEQVR42mJ89+4dRQx0YGBgOBmOBiADANXU/wdptf8JAAAAAElFTkSuQmCC');
+    background-blend-mode: overlay;
     color: #fff;
     height: 100vh;
-    overflow: hidden; /* Prevent scrolling */
-  }
+    overflow: hidden;
+}
 
   main {
     display: flex;
@@ -64,8 +67,8 @@
     justify-content: center;
     align-items: center;
     width: 100%;
-    height: calc(100vh - 20vh); /* Increased height */
-  }
+    height: calc(100vh - 20vh);
+}
 
   svg {
     width: 80%; /* Relative to the container size */

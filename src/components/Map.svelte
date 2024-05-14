@@ -95,6 +95,7 @@
         if (deadData) {
           tooltipContent += `Handgun Deaths: ${deadData.Handgun || 0}<br>`;
           tooltipContent += `Rifle Deaths: ${deadData.Rifle || 0}<br>`;
+          tooltipContent += `Shotgun Deaths: ${deadData.Shotgun || 0}<br>`;
           tooltipContent += `Automatic Rifle Deaths: ${deadData["Automatic Rifle"] || 0}<br>`;
           tooltipContent += `Semiautomatic Rifle Deaths: ${deadData["Semiautomatic Rifle"] || 0}<br>`;
           tooltipContent += `Unknown Gun Deaths: ${deadData.Unknown || 0}<br>`;
