@@ -14,7 +14,6 @@
       usMap = await d3.json('gz_2010_us_040_00_500k.json');
 
       deathData.forEach(d => {
-        // Convert string to numbers
         d.Handgun = +d.Handgun;
         d.Shotgun = +d.Shotgun;
         d.Rifle = +d.Rifle;
@@ -22,11 +21,9 @@
         d["Semiautomatic Rifle"] = +d["Semiautomatic Rifle"];
         d.Unknown = +d.Unknown;
 
-        // Calculate the total deaths in each state
         d.Total = d.Handgun + d.Shotgun + d.Rifle + d["Automatic Rifle"] + d["Semiautomatic Rifle"] + d.Unknown;
         d['All Percentage'] = d.Handgun + d.Shotgun + d.Rifle + d["Automatic Rifle"] + d["Semiautomatic Rifle"];
 
-        // Calculate the percentage of each type relative to the total
         d['Handgun Percentage'] = (d.Handgun / d.Total * 100).toFixed(2);
         d['Shotgun Percentage'] = (d.Shotgun / d.Total * 100).toFixed(2);
         d['Rifle Percentage'] = (d.Rifle / d.Total * 100).toFixed(2);
@@ -45,7 +42,7 @@
   const colorScale = d3.scaleOrdinal()
     .domain(['F', 'D-', 'D', 'D+', 'C-', 'C', 'C+', 'B-', 'B', 'B+', 'A-', 'A'])
     .range([
-      '#f2e6f4', // Very light purple
+      '#f2e6f4',
       '#e6cced',
       '#dbb2e6',
       '#cf99df',
@@ -56,7 +53,7 @@
       '#9420bc',
       '#8818b5',
       '#7c10ae',
-      '#7010a1'  // Deeper purple, still light enough for black text
+      '#7010a1'  
     ]);
 
   function renderMap() {
@@ -87,11 +84,9 @@
         const stateData = data.find(state => state.state === d.properties.NAME);
         const deadData = deathData.find(state => state.state === d.properties.NAME);
 
-        // Create a tooltip content string with additional data
         let tooltipContent = `<strong>${d.properties.NAME}</strong><br>`;
         tooltipContent += `Rating: ${stateData ? stateData.Gun_Law_Rating : 'N/A'}<br>`;
 
-        // Add other data points if available
         if (deadData) {
           tooltipContent += `Handgun Deaths: ${deadData.Handgun || 0}<br>`;
           tooltipContent += `Rifle Deaths: ${deadData.Rifle || 0}<br>`;
@@ -102,7 +97,6 @@
           tooltipContent += `Total Deaths: ${deadData.Total || 0}`;
         }
 
-        // Display the tooltip
         tooltip
           .style('opacity', 1)
           .html(tooltipContent);
@@ -131,10 +125,10 @@
 
   function updateMap(gunType) {
     console.log(`Selected Gun Type: ${gunType}`);
-    const normalizedGunType = gunType + ' Percentage'; // Adjust to use the percentage field
+    const normalizedGunType = gunType + ' Percentage';
 
     const stateCounts = deathData.reduce((acc, d) => {
-      const percentage = parseFloat(d[normalizedGunType]) || 0; // Use parseFloat to ensure numeric value
+      const percentage = parseFloat(d[normalizedGunType]) || 0;
       acc[d.state] = (acc[d.state] || 0) + percentage;
       return acc;
     }, {});

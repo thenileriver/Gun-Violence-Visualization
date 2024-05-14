@@ -28,18 +28,14 @@
 </main>
 
 <style>
-  /* Basic reset and styling */
   body {
     margin: 0;
     font-family: 'Arial', sans-serif;
-    /* Adding a more complex gradient for visual depth */
-    background: linear-gradient(to right, #0c78e3, #bdc3c7), 
-                url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAHElEQVR42mJ89+4dRQx0YGBgOBmOBiADANXU/wdptf8JAAAAAElFTkSuQmCC');
-    background-blend-mode: overlay;
+    background: linear-gradient(to right, #2c3e50, #bdc3c7);
     color: #fff;
     height: 100vh;
     overflow: hidden;
-}
+  }
 
   main {
     display: flex;
@@ -68,11 +64,11 @@
     align-items: center;
     width: 100%;
     height: calc(100vh - 20vh);
-}
+  }
 
   svg {
-    width: 80%; /* Relative to the container size */
-    height: auto; /* Maintain aspect ratio */
+    width: 80%;
+    height: auto;
   }
 
   .container {
@@ -96,7 +92,7 @@
     display: block;
     margin-bottom: 1vh;
     font-size: 1.5vw;
-    color: #000; /* Ensure label color is black */
+    color: #000;
   }
 
   select {
