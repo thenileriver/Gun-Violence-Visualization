@@ -170,7 +170,6 @@
 
 <style>
   .map-container {
-    clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%);
     display: flex;
     justify-content: center;
     align-items: center;
